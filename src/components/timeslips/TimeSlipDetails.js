@@ -1,87 +1,68 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
-export const TimeSlipForm = () => {
+export const TimeSlipDetails = () => {
     const [vehicles, setVehicles] = useState([])
     const [filteredVehicles, setFilteredVehicles] = useState([])
     const [locations, setLocations] = useState([])
     const [filteredLocations, setFilteredLocations] = useState([])
     
     const [timeSlip, update] = useState({
-        dialTime: null,
-        reactionTime: null,
-        sixtyFootTime: null,
-        threeHundredThirtyFootTime: null,
-        eigthMileTime: null,
-        eigthMileSpeed: null,
-        oneThousandFootTime: null,
-        quarterMileTime: null,
-        quarterMileSpeed: null,
-        opponentDialTime: null,
-        opponentReactionTime: null,
-        opponentSixtyFootTime: null,
-        opponentThreeHundredThirtyFootTime: null,
-        opponentEigthMileTime: null,
-        opponentEigthMileSpeed: null,
-        opponentOneThousandFootTime: null,
-        opponentQuarterMileTime: null,
-        opponentQuarterMileSpeed: null,
+        dialTime: 0,
+        reactionTime: 0,
+        sixtyFootTime: 0,
+        threeHundredThirtyFootTime: 0,
+        eigthMileTime: 0,
+        eigthMileSpeed: 0,
+        oneThousandFootTime: 0,
+        quarterMileTime: 0,
+        quarterMileSpeed: 0,
+        opponentDialTime: 0,
+        opponentReactionTime: 0,
+        opponentSixtyFootTime: 0,
+        opponentThreeHundredThirtyFootTime: 0,
+        opponentEigthMileTime: 0,
+        opponentEigthMileSpeed: 0,
+        opponentOneThousandFootTime: 0,
+        opponentQuarterMileTime: 0,
+        opponentQuarterMileSpeed: 0,
         win: false,
         date: "",
         changesToCar: "",
         weather: "",
-        userId: null,
-        locationId: null,
-        vehicleId: null
+        userId: 0,
+        locationId: 0,
+        vehicleId: 0
     })
+
+    const {timeSlipId} = useParams()
    
     const navigate = useNavigate()
 
     const localDragUser = localStorage.getItem("drag_user")
     const dragUserObject = JSON.parse(localDragUser)
 
+    useEffect(() => {
+        fetch(`http://localhost:8088/timeSlips/${timeSlipId}`)
+            .then(response => response.json())
+            .then((data) => {
+                update(data)
+            })
+    })
+
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
-        
-        const timeSlipToSendToAPI = {
-            dialTime: parseFloat(timeSlip.dialTime, 2),
-            reactionTime: parseFloat(timeSlip.reactionTime, 3),
-            sixtyFootTime: parseFloat(timeSlip.sixtyFootTime, 3),
-            threeHundredThirtyFootTime: parseFloat(timeSlip.threeHundredThirtyFootTime, 3),
-            eigthMileTime: parseFloat(timeSlip.eigthMileTime, 3),
-            eigthMileSpeed: parseFloat(timeSlip.eigthMileSpeed, 2),
-            oneThousandFootTime: parseFloat(timeSlip.oneThousandFootTime, 3),
-            quarterMileTime: parseFloat(timeSlip.quarterMileTime, 3),
-            quarterMileSpeed: parseFloat(timeSlip.quarterMileSpeed, 2),
-            opponentDialTime: parseFloat(timeSlip.opponentDialTime, 2),
-            opponentReactionTime: parseFloat(timeSlip.opponentReactionTime, 3),
-            opponentSixtyFootTime: parseFloat(timeSlip.opponentSixtyFootTime, 3),
-            opponentThreeHundredThirtyFootTime: parseFloat(timeSlip.opponentThreeHundredThirtyFootTime, 3),
-            opponentEigthMileTime: parseFloat(timeSlip.opponentEigthMileTime, 3),
-            opponentEigthMileSpeed: parseFloat(timeSlip.opponentEigthMileSpeed, 2),
-            opponentOneThousandFootTime: parseFloat(timeSlip.opponentOneThousandFootTime, 3),
-            opponentQuarterMileTime: parseFloat(timeSlip.opponentQuarterMileTime, 3),
-            opponentQuarterMileSpeed: parseFloat(timeSlip.opponentQuarterMileSpeed, 2),
-            win: timeSlip.win,
-            date: timeSlip.date,
-            changesToCar: timeSlip.changesToCar,
-            weather: timeSlip.weather,
-            userId: dragUserObject.id,
-            locationId: timeSlip.locationId,
-            vehicleId: timeSlip.vehicleId
-           
-        }
 
-        return fetch(`http://localhost:8088/timeSlips`, {
-            method: "POST",
+        return fetch(`http://localhost:8088/timeSlips/${timeSlipId}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(timeSlipToSendToAPI)
+            body: JSON.stringify(timeSlip)
         })
             .then(response => response.json())
             .then(() => {
-                navigate("/timeSlips")
+                navigate(`/timeSlip/details/${timeSlipId}`)
             })
     }
 
@@ -140,7 +121,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.dialTime = evt.target.value
+                                    copy.dialTime = parseFloat(evt.target.value, 2)
                                     update(copy)
                                 }
                             } />
@@ -158,7 +139,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.reactionTime = evt.target.value
+                                    copy.reactionTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -176,7 +157,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.sixtyFootTime = evt.target.value
+                                    copy.sixtyFootTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -194,7 +175,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.threeHundredThirtyFootTime = evt.target.value
+                                    copy.threeHundredThirtyFootTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -212,7 +193,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.eigthMileTime = evt.target.value
+                                    copy.eigthMileTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -230,7 +211,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.eigthMileSpeed = evt.target.value
+                                    copy.eigthMileSpeed = parseFloat(evt.target.value, 2)
                                     update(copy)
                                 }
                             } />
@@ -248,7 +229,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.oneThousandFootTime = evt.target.value
+                                    copy.oneThousandFootTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -266,7 +247,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.quarterMileTime = evt.target.value
+                                    copy.quarterMileTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -284,7 +265,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.quarterMileSpeed = evt.target.value
+                                    copy.quarterMileSpeed = parseFloat(evt.target.value, 2)
                                     update(copy)
                                 }
                             } />
@@ -305,7 +286,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.opponentDialTime = evt.target.value
+                                    copy.opponentDialTime = parseFloat(evt.target.value, 2)
                                     update(copy)
                                 }
                             } />
@@ -323,7 +304,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.opponentReactionTime = evt.target.value
+                                    copy.opponentReactionTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -341,7 +322,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.opponentSixtyFootTime = evt.target.value
+                                    copy.opponentSixtyFootTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -359,7 +340,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.opponentThreeHundredThirtyFootTime = evt.target.value
+                                    copy.opponentThreeHundredThirtyFootTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -377,7 +358,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.opponentEigthMileTime = evt.target.value
+                                    copy.opponentEigthMileTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -395,7 +376,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.opponentEigthMileSpeed = evt.target.value
+                                    copy.opponentEigthMileSpeed = parseFloat(evt.target.value, 2)
                                     update(copy)
                                 }
                             } />
@@ -413,7 +394,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.opponentOneThousandFootTime = evt.target.value
+                                    copy.opponentOneThousandFootTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -431,7 +412,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.opponentQuarterMileTime = evt.target.value
+                                    copy.opponentQuarterMileTime = parseFloat(evt.target.value, 3)
                                     update(copy)
                                 }
                             } />
@@ -449,7 +430,7 @@ export const TimeSlipForm = () => {
                             onChange={
                                 (evt) => {
                                     const copy = {...timeSlip}
-                                    copy.opponentQuarterMileSpeed = evt.target.value
+                                    copy.opponentQuarterMileSpeed = parseFloat(evt.target.value, 2)
                                     update(copy)
                                 }
                             } />
@@ -578,7 +559,7 @@ export const TimeSlipForm = () => {
             <button
                 onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
                 className="btn btn-primary">
-                Add Time Slip
+                Save Changes
             </button>
             <button onClick={() => navigate("/timeSlips")}>Back To Home</button>
         </form>
