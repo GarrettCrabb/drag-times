@@ -48,7 +48,8 @@ export const TimeSlipDetails = () => {
             .then((data) => {
                 update(data)
             })
-    })
+    },
+    [])
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -524,7 +525,7 @@ export const TimeSlipDetails = () => {
                                     {
                                         filteredVehicles.map(
                                             (vehicle) => {
-                                                return <option value={vehicle.id}>{vehicle.year} {vehicle.make} {vehicle.model}</option>
+                                                return <option key={`${vehicle.id}`} value={vehicle.id}>{vehicle.year} {vehicle.make} {vehicle.model}</option>
                                             })
                                     }
                                 </select>
@@ -547,7 +548,7 @@ export const TimeSlipDetails = () => {
                                     {
                                         filteredLocations.map(
                                             (location) => {
-                                                return <option value={location.id}>{location.name}</option>
+                                                return <option key={`${location.id}`} value={location.id}>{location.name}</option>
                                             })
                                     }
                                 </select>
@@ -561,7 +562,6 @@ export const TimeSlipDetails = () => {
                 className="btn btn-primary">
                 Save Changes
             </button>
-            <button onClick={() => navigate("/timeSlips")}>Back To Home</button>
         </form>
     )
 }

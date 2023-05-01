@@ -543,7 +543,7 @@ export const TimeSlipForm = () => {
                                     {
                                         filteredVehicles.map(
                                             (vehicle) => {
-                                                return <option value={vehicle.id}>{vehicle.year} {vehicle.make} {vehicle.model}</option>
+                                                return <option key={`${vehicle.id}`} value={vehicle.id}>{vehicle.year} {vehicle.make} {vehicle.model}</option>
                                             })
                                     }
                                 </select>
@@ -566,7 +566,7 @@ export const TimeSlipForm = () => {
                                     {
                                         filteredLocations.map(
                                             (location) => {
-                                                return <option value={location.id}>{location.name}</option>
+                                                return <option key={`${location.id}`} value={location.id}>{location.name}</option>
                                             })
                                     }
                                 </select>

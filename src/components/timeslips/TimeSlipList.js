@@ -39,7 +39,7 @@ export const TimeSlipList = () => {
             {
                 filteredTimeSlips.map(
                     (timeSlip) => {
-                        return <section className="timeSlip">
+                        return <section key={`${timeSlip.id}`} className="timeSlip">
                             <Link to={`/timeSlip/details/${timeSlip.id}`}><header>{timeSlip.date}</header></Link>
                             <div>{timeSlip.quarterMileTime}</div>
                             <footer>MPH: {timeSlip.quarterMileSpeed}</footer>
