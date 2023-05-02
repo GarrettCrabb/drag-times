@@ -562,6 +562,7 @@ export const TimeSlipDetails = () => {
                 className="btn btn-primary">
                 Save Changes
             </button>
+            <button onClick={() => navigate("/timeSlips")}>Cancel</button>
         </form>
     )
 }

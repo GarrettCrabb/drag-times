@@ -16,6 +16,16 @@ export const LocationList = () => {
                     setLocations(locationsArray)
                 })
     }
+
+    const deleteLocation = (evt, location) => {
+        return fetch(`http://localhost:8088/locations/${location.id}`, {
+            method: "DELETE"
+        })
+            .then(() => {
+                getLocations()
+            })
+    }
+
     useEffect(
         () => {
            getLocations()
@@ -47,6 +57,7 @@ export const LocationList = () => {
                             <div>{location.trackLength}</div>
                             <footer>{location.address}</footer>
                             <Link to={`/locations/edit/${location.id}`}><button>Edit Track</button></Link>
+                            <button onClick={(evt) => {deleteLocation(evt, location)} }>Delete</button>
                         </section>
                     }
                 )
