@@ -16,6 +16,16 @@ export const VehicleList = () => {
                     setVehicles(locationsArray)
                 })
     }
+
+    const deleteVehicle = (evt, vehicle) => {
+        return fetch(`http://localhost:8088/vehicles/${vehicle.id}`, {
+            method: "DELETE"
+        })
+            .then(() => {
+                getVehicles()
+            })
+    }
+
     useEffect(
         () => {
            getVehicles()
@@ -45,6 +55,7 @@ export const VehicleList = () => {
                         return <section key={`${vehicle.id}`} className="vehicle">
                             <div>{vehicle.year} {vehicle.make} {vehicle.model}</div>
                             <Link to={`/garage/edit/${vehicle.id}`}><button>Edit Vehicle</button></Link>
+                            <button onClick={(evt) => {deleteVehicle(evt, vehicle)} }>Delete</button>
                         </section>
                     }
                 )

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 export const TimeSlipList = () => {
     const [timeSlips, setTimeSlips] = useState([])
@@ -9,13 +9,26 @@ export const TimeSlipList = () => {
     const localDragUser = localStorage.getItem("drag_user")
     const dragUserObject = JSON.parse(localDragUser)
 
-    useEffect(
-        () => {
-            fetch(`http://localhost:8088/timeSlips`)
+    const getTimeSlips = () => {
+        return fetch(`http://localhost:8088/timeSlips`)
                 .then(response => response.json())
                 .then((timeSlipArray) => {
                     setTimeSlips(timeSlipArray)
                 })
+    }
+
+    const deleteTimeSlip = (evt, timeSlip) => {
+        return fetch(`http://localhost:8088/timeSlips/${timeSlip.id}`, {
+            method: "DELETE"
+        })
+            .then(() => {
+                getTimeSlips()
+            })
+    }
+
+    useEffect(
+        () => {
+            getTimeSlips()
         },
         []
     )
@@ -40,9 +53,11 @@ export const TimeSlipList = () => {
                 filteredTimeSlips.map(
                     (timeSlip) => {
                         return <section key={`${timeSlip.id}`} className="timeSlip">
-                            <Link to={`/timeSlip/details/${timeSlip.id}`}><header>{timeSlip.date}</header></Link>
+                            <header>{timeSlip.date}</header>
                             <div>{timeSlip.quarterMileTime}</div>
                             <footer>MPH: {timeSlip.quarterMileSpeed}</footer>
+                            <Link to={`/timeSlip/details/${timeSlip.id}`}><button>See Details</button></Link>
+                            <button onClick={(evt) => {deleteTimeSlip(evt, timeSlip)} }>Delete</button>
                         </section>
                     }
                 )
