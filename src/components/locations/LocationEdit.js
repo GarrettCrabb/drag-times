@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
-export const LocationEdit = ({getLocations}) => {
+export const LocationEdit = () => {
     const [newLocation, update] = useState({
         name: "",
         address: "",
@@ -27,7 +27,7 @@ export const LocationEdit = ({getLocations}) => {
         event.preventDefault()
 
         return fetch(`http://localhost:8088/locations/${locationId}`, {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -35,7 +35,7 @@ export const LocationEdit = ({getLocations}) => {
         })
             .then(response => response.json())
             .then(() => {
-                getLocations()
+                navigate("/locations")
             })
     }
 

@@ -56,7 +56,7 @@ export const TimeSlipList = () => {
                             <header>{timeSlip.date}</header>
                             <div>{timeSlip.quarterMileTime}</div>
                             <footer>MPH: {timeSlip.quarterMileSpeed}</footer>
-                            <Link to={`/timeSlip/details/${timeSlip.id}`}><button>See Details</button></Link>
+                            <Link to={`/timeSlip/details/${timeSlip.id}`}><button>Details/Edit</button></Link>
                             <button onClick={(evt) => {deleteTimeSlip(evt, timeSlip)} }>Delete</button>
                         </section>
                     }

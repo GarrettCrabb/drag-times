@@ -64,7 +64,7 @@ export const VehicleEdit = () => {
                 <div className="form-group">
                     <label htmlFor="make">Make</label>
                     <input
-                        required autoFocus
+                        required
                         type="text"
                         className="form-control"
                         placeholder="Make"
@@ -82,7 +82,7 @@ export const VehicleEdit = () => {
                 <div className="form-group">
                     <label htmlFor="model">Model</label>
                     <input
-                        required autoFocus
+                        required
                         type="text"
                         className="form-control"
                         placeholder="Model"
