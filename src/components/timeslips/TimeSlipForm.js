@@ -150,7 +150,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="reactonTime">Reaction Time</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="Reaction Time"
@@ -168,7 +168,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="sixtyFootTime">60'</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="60'"
@@ -186,7 +186,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="threeHundredThirtyFootTime">330'</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="330'"
@@ -204,7 +204,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="eigthMileTime">1/8 Mile Time</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="1/8 Mile Time"
@@ -222,7 +222,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="eigthMileSpeed">1/8 Mile MPH</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="1/8 Mile MPH"
@@ -240,7 +240,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="oneThousandFootTime">1000'</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="1000'"
@@ -258,7 +258,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="quarterMileTime">1/4 Mile Time</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="1/4 Mile Time"
@@ -276,7 +276,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="quarterMileSpeed">1/4 Mile MPH</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="1/4 Mile MPH"
@@ -297,7 +297,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="opponentDial">Dial</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="Dial"
@@ -315,7 +315,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="opponentReactonTime">Reaction Time</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="Reaction Time"
@@ -333,7 +333,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="opponentSixtyFootTime">60'</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="60'"
@@ -351,7 +351,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="opponentThreeHundredThirtyFootTime">330'</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="330'"
@@ -369,7 +369,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="opponentEigthMileTime">1/8 Mile Time</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="1/8 Mile Time"
@@ -387,7 +387,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="opponentEigthMileSpeed">1/8 Mile MPH</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="1/8 Mile MPH"
@@ -405,7 +405,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="opponentOneThousandFootTime">1000'</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="1000'"
@@ -423,7 +423,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="opponentQuarterMileTime">1/4 Mile Time</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="1/4 Mile Time"
@@ -441,7 +441,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="opponentQuarterMileSpeed">1/4 Mile MPH</label>
                         <input
-                            required autoFocus
+                            required
                             type="number"
                             className="form-control"
                             placeholder="1/4 Mile MPH"
@@ -462,7 +462,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="changes">Changes Made to Car</label>
                         <input
-                            required autoFocus
+                            required
                             type="text"
                             className="form-control"
                             placeholder="Changes Made"
@@ -480,7 +480,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="date">Date</label>
                         <input
-                            required autoFocus
+                            required
                             type="text"
                             className="form-control"
                             placeholder="Date"
@@ -498,7 +498,7 @@ export const TimeSlipForm = () => {
                     <div className="form-group">
                         <label htmlFor="weather">Weather</label>
                         <input
-                            required autoFocus
+                            required
                             type="text"
                             className="form-control"
                             placeholder="Weather"

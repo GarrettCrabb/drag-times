@@ -58,7 +58,7 @@ export const LocationForm = ({getLocations}) => {
                 <div className="form-group">
                     <label htmlFor="trackLength">Track Length</label>
                     <input
-                        required autoFocus
+                        required
                         type="text"
                         className="form-control"
                         placeholder="Track Length"
@@ -76,7 +76,7 @@ export const LocationForm = ({getLocations}) => {
                 <div className="form-group">
                     <label htmlFor="address">Address</label>
                     <input
-                        required autoFocus
+                        required
                         type="text"
                         className="form-control"
                         placeholder="Address"
