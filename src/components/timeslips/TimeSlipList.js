@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
+import "./TimeSlips.css"
 
-export const TimeSlipList = () => {
+export const TimeSlipList = ({ searchTermState }) => {
     const [timeSlips, setTimeSlips] = useState([])
     const [filteredTimeSlips, setFiltered] = useState([])
     const navigate = useNavigate()
@@ -10,7 +11,7 @@ export const TimeSlipList = () => {
     const dragUserObject = JSON.parse(localDragUser)
 
     const getTimeSlips = () => {
-        return fetch(`http://localhost:8088/timeSlips`)
+        return fetch(`http://localhost:8088/timeSlips?_expand=location&_expand=vehicle`)
                 .then(response => response.json())
                 .then((timeSlipArray) => {
                     setTimeSlips(timeSlipArray)
@@ -41,11 +42,19 @@ export const TimeSlipList = () => {
         [timeSlips]
     )
 
+    useEffect(
+        () => {
+            const searchedTimeSlips = timeSlips.filter(timeSlip => timeSlip.date.startsWith(searchTermState) && timeSlip.userId === dragUserObject.id)
+            setFiltered(searchedTimeSlips)
+        },
+        [searchTermState]
+    )
+
     return <>
-        <h2>Your Time Slips</h2>
+        <h2 className="timeSlipListTitle">Your Time Slips</h2>
 
         <div>
-            <button onClick={ () => navigate("/timeSlip/create")}>Add a Time Slip</button>
+            <button className="createTimeSlipButton" onClick={ () => navigate("/timeSlip/create")}>Add a Time Slip</button>
         </div>
 
         <article className="timeSlips">
@@ -54,10 +63,12 @@ export const TimeSlipList = () => {
                     (timeSlip) => {
                         return <section key={`${timeSlip.id}`} className="timeSlip">
                             <header>{timeSlip.date}</header>
-                            <div>{timeSlip.quarterMileTime}</div>
-                            <footer>MPH: {timeSlip.quarterMileSpeed}</footer>
-                            <Link to={`/timeSlip/details/${timeSlip.id}`}><button>Details/Edit</button></Link>
-                            <button onClick={(evt) => {deleteTimeSlip(evt, timeSlip)} }>Delete</button>
+                            <div>1/4 Mile Time: {timeSlip.quarterMileTime}</div>
+                            <div>MPH: {timeSlip.quarterMileSpeed}</div>
+                            <div>Vehicle: {timeSlip?.vehicle?.year} {timeSlip?.vehicle?.make} {timeSlip?.vehicle?.model}</div>
+                            <footer>Track: {timeSlip?.location?.name}</footer>
+                            <Link to={`/timeSlip/details/${timeSlip.id}`}><button className="timeSlipEditDetailsButton">Details/Edit</button></Link>
+                            <button className="timeSlipDeleteButton" onClick={(evt) => {deleteTimeSlip(evt, timeSlip)} }>Delete</button>
                         </section>
                     }
                 )

@@ -1,0 +1,18 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+    background-color: #212121;
+    margin-top: 0px;
+    padding-bottom: 10px;
+}
+
+.navButton {
+    background-color: #212121;
+    color: #fafafa;
+    padding: 5px;
+    border: none;
+    margin-top: 20px;
+}
+

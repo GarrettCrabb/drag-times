@@ -42,7 +42,7 @@ export const VehicleList = () => {
     )
 
     return <>
-        <h2>Your Garage</h2>
+        <h2 className="garageTitle">Your Garage</h2>
 
         <article className="vehicleForm">
             <VehicleForm getVehicles={getVehicles}/>
@@ -54,8 +54,8 @@ export const VehicleList = () => {
                     (vehicle) => {
                         return <section key={`${vehicle.id}`} className="vehicle">
                             <div>{vehicle.year} {vehicle.make} {vehicle.model}</div>
-                            <Link to={`/garage/edit/${vehicle.id}`}><button>Edit Vehicle</button></Link>
-                            <button onClick={(evt) => {deleteVehicle(evt, vehicle)} }>Delete</button>
+                            <Link to={`/garage/edit/${vehicle.id}`}><button className="editVehicleButton">Edit Vehicle</button></Link>
+                            <button className="deleteVehicleButton" onClick={(evt) => {deleteVehicle(evt, vehicle)} }>Delete</button>
                         </section>
                     }
                 )

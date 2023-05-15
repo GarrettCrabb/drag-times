@@ -42,7 +42,7 @@ export const LocationList = () => {
     )
 
     return <>
-        <h2>Your Drag Strips</h2>
+        <h2 className="locationsTitle">Your Drag Strips</h2>
 
         <article className="locationForm">
             <LocationForm getLocations={getLocations}/>
@@ -56,8 +56,8 @@ export const LocationList = () => {
                             <header>{location.name}</header>
                             <div>{location.trackLength}</div>
                             <footer>{location.address}</footer>
-                            <Link to={`/locations/edit/${location.id}`}><button>Edit Track</button></Link>
-                            <button onClick={(evt) => {deleteLocation(evt, location)} }>Delete</button>
+                            <Link to={`/locations/edit/${location.id}`}><button className="editTrackButton">Edit Track</button></Link>
+                            <button className="deleteTrackButton" onClick={(evt) => {deleteLocation(evt, location)} }>Delete</button>
                         </section>
                     }
                 )

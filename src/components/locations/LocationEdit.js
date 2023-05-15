@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import "./Locations.css"
 
 export const LocationEdit = () => {
     const [newLocation, update] = useState({
@@ -8,7 +9,7 @@ export const LocationEdit = () => {
         trackLength: ""
     })
 
-    const {locationId} = useParams()
+    const { locationId } = useParams()
     const navigate = useNavigate()
 
     const localDragUser = localStorage.getItem("drag_user")
@@ -21,7 +22,7 @@ export const LocationEdit = () => {
                 update(data)
             })
     },
-    [])
+        [])
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -41,66 +42,69 @@ export const LocationEdit = () => {
 
     return (
         <form className="locationForm">
-            <h2 className="locationForm__title">New Drag Strip</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input
-                        required autoFocus
-                        type="text"
-                        className="form-control"
-                        placeholder="Name"
-                        value={newLocation.name}
-                        onChange={
-                            (evt) => {
-                                const copy = {...newLocation}
-                                copy.name = evt.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="trackLength">Track Length</label>
-                    <input
-                        required autoFocus
-                        type="text"
-                        className="form-control"
-                        placeholder="Track Length"
-                        value={newLocation.trackLength}
-                        onChange={
-                            (evt) => {
-                                const copy = {...newLocation}
-                                copy.trackLength = evt.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="address">Address</label>
-                    <input
-                        required autoFocus
-                        type="text"
-                        className="form-control"
-                        placeholder="Address"
-                        value={newLocation.address}
-                        onChange={
-                            (evt) => {
-                                const copy = {...newLocation}
-                                copy.address = evt.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <button
-                onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-                className="btn btn-primary">
-                Save Changes
-            </button>
+            <h2 className="locationEditTitle">Edit Drag Strip</h2>
+            <div className="locationFormWrapper">
+                <fieldset>
+                    <div className="formGroup">
+                        <label htmlFor="name">Name</label>
+                        <input
+                            required autoFocus
+                            type="text"
+                            className="form-control"
+                            placeholder="Name"
+                            value={newLocation.name}
+                            onChange={
+                                (evt) => {
+                                    const copy = { ...newLocation }
+                                    copy.name = evt.target.value
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="formGroup">
+                        <label htmlFor="trackLength">Track Length</label>
+                        <input
+                            required autoFocus
+                            type="text"
+                            className="form-control"
+                            placeholder="Track Length"
+                            value={newLocation.trackLength}
+                            onChange={
+                                (evt) => {
+                                    const copy = { ...newLocation }
+                                    copy.trackLength = evt.target.value
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="formGroup">
+                        <label htmlFor="address">Address</label>
+                        <textarea
+                            required autoFocus
+                            className="form-textarea"
+                            placeholder="Address"
+                            rows={1}
+                            cols={50}
+                            value={newLocation.address}
+                            onChange={
+                                (evt) => {
+                                    const copy = { ...newLocation }
+                                    copy.address = evt.target.value
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <button
+                    onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
+                    className="saveLocationEdit">
+                    Save Changes
+                </button>
+            </div>
         </form>
     )
 }
