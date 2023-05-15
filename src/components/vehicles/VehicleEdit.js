@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import "./Vehicles.css"
 
 export const VehicleEdit = () => {
     const [newVehicle, update] = useState({
@@ -8,7 +9,7 @@ export const VehicleEdit = () => {
         model: ""
     })
 
-    const {vehicleId} = useParams()
+    const { vehicleId } = useParams()
     const navigate = useNavigate()
 
     const localDragUser = localStorage.getItem("drag_user")
@@ -21,7 +22,7 @@ export const VehicleEdit = () => {
                 update(data)
             })
     },
-    [])
+        [])
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -41,66 +42,68 @@ export const VehicleEdit = () => {
 
     return (
         <form className="editVehicleForm">
-            <h4 className="editVehicleForm__title">Edit Vehicle</h4>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="year">Year</label>
-                    <input
-                        required autoFocus
-                        type="number"
-                        className="form-control"
-                        placeholder=""
-                        value={newVehicle.year}
-                        onChange={
-                            (evt) => {
-                                const copy = {...newVehicle}
-                                copy.year = parseInt(evt.target.value)
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="make">Make</label>
-                    <input
-                        required
-                        type="text"
-                        className="form-control"
-                        placeholder="Make"
-                        value={newVehicle.make}
-                        onChange={
-                            (evt) => {
-                                const copy = {...newVehicle}
-                                copy.make = evt.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="model">Model</label>
-                    <input
-                        required
-                        type="text"
-                        className="form-control"
-                        placeholder="Model"
-                        value={newVehicle.model}
-                        onChange={
-                            (evt) => {
-                                const copy = {...newVehicle}
-                                copy.model = evt.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <button
-                onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-                className="btn btn-primary">
-                Save Changes
-            </button>
+            <h2 className="vehicleEditTitle">Edit Vehicle</h2>
+            <div className="vehicleFormWrapper">
+                <fieldset>
+                    <div className="formGroup">
+                        <label htmlFor="year">Year</label>
+                        <input
+                            required autoFocus
+                            type="number"
+                            className="form-control"
+                            placeholder=""
+                            value={newVehicle.year}
+                            onChange={
+                                (evt) => {
+                                    const copy = { ...newVehicle }
+                                    copy.year = parseInt(evt.target.value)
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="formGroup">
+                        <label htmlFor="make">Make</label>
+                        <input
+                            required
+                            type="text"
+                            className="form-control"
+                            placeholder="Make"
+                            value={newVehicle.make}
+                            onChange={
+                                (evt) => {
+                                    const copy = { ...newVehicle }
+                                    copy.make = evt.target.value
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="formGroup">
+                        <label htmlFor="model">Model</label>
+                        <input
+                            required
+                            type="text"
+                            className="form-control"
+                            placeholder="Model"
+                            value={newVehicle.model}
+                            onChange={
+                                (evt) => {
+                                    const copy = { ...newVehicle }
+                                    copy.model = evt.target.value
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <button
+                    onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
+                    className="saveVehicleEdit">
+                    Save Changes
+                </button>
+            </div>
         </form>
     )
 }

@@ -1,0 +1,80 @@
+.locationFormWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 17px;
+}
+
+.addNewTrackButton {
+    height: 30px;
+    margin-top: 15px;
+    margin-left: 10px;
+    background-color: #212121;
+    color: #fafafa;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.editTrackButton {
+    background-color: #212121;
+    color: #fafafa;
+    padding: 5px;
+    border-radius: 7px;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.deleteTrackButton {
+    background-color: #212121;
+    color: #fafafa;
+    padding: 5px;
+    border-radius: 7px;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.locations {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.location {
+    border: 2px solid #212121;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+fieldset {
+    border: none;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.saveLocationEdit {
+    height: 30px;
+    margin-top: 15px;
+    margin-left: 10px;
+    background-color: #212121;
+    color: #fafafa;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.locationsTitle {
+    margin-left: 30px;
+}
+
+.locationEditTitle {
+    margin-left: 30px;
+}
+
+.locationFormTitle {
+    margin-left: 30px;
+}

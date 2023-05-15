@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import "./TimeSlips.css"
 
 export const TimeSlipDetails = () => {
     const [vehicles, setVehicles] = useState([])
     const [filteredVehicles, setFilteredVehicles] = useState([])
     const [locations, setLocations] = useState([])
     const [filteredLocations, setFilteredLocations] = useState([])
-    
+
     const [timeSlip, update] = useState({
         dialTime: 0,
         reactionTime: 0,
@@ -35,8 +36,8 @@ export const TimeSlipDetails = () => {
         vehicleId: 0
     })
 
-    const {timeSlipId} = useParams()
-   
+    const { timeSlipId } = useParams()
+
     const navigate = useNavigate()
 
     const localDragUser = localStorage.getItem("drag_user")
@@ -49,7 +50,7 @@ export const TimeSlipDetails = () => {
                 update(data)
             })
     },
-    [])
+        [])
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -106,463 +107,477 @@ export const TimeSlipDetails = () => {
     )
 
     return (
-        <form className="timeSlipForm">
-            <h2 className="timeSlipForm__title">Add a New Time Slip</h2>
-            <div className="myTimes">
-                <h3>You</h3>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="dial">Dial</label>
-                        <input
-                            required autoFocus
-                            type="number"
-                            className="form-control"
-                            placeholder="Dial"
-                            value={timeSlip.dialTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.dialTime = parseFloat(evt.target.value, 2)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="reactonTime">Reaction Time</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="Reaction Time"
-                            value={timeSlip.reactionTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.reactionTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="sixtyFootTime">60'</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="60'"
-                            value={timeSlip.sixtyFootTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.sixtyFootTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="threeHundredThirtyFootTime">330'</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="330'"
-                            value={timeSlip.threeHundredThirtyFootTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.threeHundredThirtyFootTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="eigthMileTime">1/8 Mile Time</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="1/8 Mile Time"
-                            value={timeSlip.eigthMileTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.eigthMileTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="eigthMileSpeed">1/8 Mile MPH</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="1/8 Mile MPH"
-                            value={timeSlip.eigthMileSpeed}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.eigthMileSpeed = parseFloat(evt.target.value, 2)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="oneThousandFootTime">1000'</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="1000'"
-                            value={timeSlip.oneThousandFootTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.oneThousandFootTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="quarterMileTime">1/4 Mile Time</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="1/4 Mile Time"
-                            value={timeSlip.quarterMileTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.quarterMileTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="quarterMileSpeed">1/4 Mile MPH</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="1/4 Mile MPH"
-                            value={timeSlip.quarterMileSpeed}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.quarterMileSpeed = parseFloat(evt.target.value, 2)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-            </div>
-            <div className="opponentTimes">
-                <h3>Opponent</h3>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="opponentDial">Dial</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="Dial"
-                            value={timeSlip.opponentDialTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.opponentDialTime = parseFloat(evt.target.value, 2)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="opponentReactonTime">Reaction Time</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="Reaction Time"
-                            value={timeSlip.opponentReactionTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.opponentReactionTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="opponentSixtyFootTime">60'</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="60'"
-                            value={timeSlip.opponentSixtyFootTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.opponentSixtyFootTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="opponentThreeHundredThirtyFootTime">330'</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="330'"
-                            value={timeSlip.opponentThreeHundredThirtyFootTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.opponentThreeHundredThirtyFootTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="opponentEigthMileTime">1/8 Mile Time</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="1/8 Mile Time"
-                            value={timeSlip.opponentEigthMileTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.opponentEigthMileTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="opponentEigthMileSpeed">1/8 Mile MPH</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="1/8 Mile MPH"
-                            value={timeSlip.opponentEigthMileSpeed}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.opponentEigthMileSpeed = parseFloat(evt.target.value, 2)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="opponentOneThousandFootTime">1000'</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="1000'"
-                            value={timeSlip.opponentOneThousandFootTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.opponentOneThousandFootTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="opponentQuarterMileTime">1/4 Mile Time</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="1/4 Mile Time"
-                            value={timeSlip.opponentQuarterMileTime}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.opponentQuarterMileTime = parseFloat(evt.target.value, 3)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="opponentQuarterMileSpeed">1/4 Mile MPH</label>
-                        <input
-                            required
-                            type="number"
-                            className="form-control"
-                            placeholder="1/4 Mile MPH"
-                            value={timeSlip.opponentQuarterMileSpeed}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.opponentQuarterMileSpeed = parseFloat(evt.target.value, 2)
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-            </div>
-            <div className="timeSlipDetails">
-                <h2>Details</h2>
-            <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="changes">Changes Made to Car</label>
-                        <input
-                            required
-                            type="text"
-                            className="form-control"
-                            placeholder="Changes Made"
-                            value={timeSlip.changesToCar}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.changesToCar = evt.target.value
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="date">Date</label>
-                        <input
-                            required
-                            type="text"
-                            className="form-control"
-                            placeholder="Date"
-                            value={timeSlip.date}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.date = evt.target.value
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="weather">Weather</label>
-                        <input
-                            required
-                            type="text"
-                            className="form-control"
-                            placeholder="Weather"
-                            value={timeSlip.weather}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.weather = evt.target.value
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="win">Win:</label>
-                        <input type="checkbox"
-                            value={timeSlip.win}
-                            onChange={
-                                (evt) => {
-                                    const copy = {...timeSlip}
-                                    copy.win = evt.target.checked
-                                    update(copy)
-                                }
-                            } />
-                    </div>
-                </fieldset>
-                <div className="locationAndVehicleWrapper">
-                    <fieldset>
-                        <div className="form-group">
-                            <label htmlFor="vehicle">Pick a Vehicle
-                                <select
-                                value={timeSlip.vehicleId}
-                                onChange={
-                                    (evt) => {
-                                        const copy = {...timeSlip}
-                                        copy.vehicleId = parseInt(evt.target.value)
-                                        update(copy)
-                                    }
-                                }>
-                                    <option>Pick A Vehicle</option>
-                                    {
-                                        filteredVehicles.map(
-                                            (vehicle) => {
-                                                return <option key={`${vehicle.id}`} value={vehicle.id}>{vehicle.year} {vehicle.make} {vehicle.model}</option>
-                                            })
-                                    }
-                                </select>
-                            </label>
+        <div className="centerForm">
+            <form className="timeSlipForm">
+                <h1 className="timeSlipFormTitle">Edit and Details</h1>
+                <div className="timeSlipFormWrapper">
+                    <div className="TimeSlipInputs">
+                        <div className="timeSlipTitles">
+                            <div className="youTitle"><h2>You</h2></div>
+                            <div className="opponentTitle"><h2>Opponent</h2></div>
                         </div>
-                    </fieldset>
-                    <fieldset>
-                        <div className="form-group">
-                            <label htmlFor="location">Pick a Track
-                                <select
-                                value={timeSlip.locationId}
-                                onChange={
-                                    (evt) => {
-                                        const copy = {...timeSlip}
-                                        copy.locationId = parseInt(evt.target.value)
-                                        update(copy)
-                                    }
-                                }>
-                                    <option>Pick A Track</option>
-                                    {
-                                        filteredLocations.map(
-                                            (location) => {
-                                                return <option key={`${location.id}`} value={location.id}>{location.name}</option>
-                                            })
-                                    }
-                                </select>
-                            </label>
+                        <div className="dial">
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required autoFocus
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="Dial"
+                                        value={timeSlip.dialTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.dialTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                            <div className="dialLabel">Dial</div>
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="Dial"
+                                        value={timeSlip.opponentDialTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.opponentDialTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
                         </div>
-                    </fieldset>
+                        <div className="reactionTime">
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="Reaction Time"
+                                        value={timeSlip.reactionTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.reactionTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                            <div className="reactionTimeLabel">R/T</div>
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="Reaction Time"
+                                        value={timeSlip.opponentReactionTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.opponentReactionTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div className="sixtyFootTime">
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="60'"
+                                        value={timeSlip.sixtyFootTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.sixtyFootTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                            <div className="sixtyFootTimeLabel">60'</div>
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="60'"
+                                        value={timeSlip.opponentSixtyFootTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.opponentSixtyFootTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div className="threeHundredThirtyFootTime">
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="330'"
+                                        value={timeSlip.threeHundredThirtyFootTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.threeHundredThirtyFootTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                            <div className="threeHundredThirtyFootTimeLabel">330'</div>
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="330'"
+                                        value={timeSlip.opponentThreeHundredThirtyFootTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.opponentThreeHundredThirtyFootTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div className="eigthMileTime">
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="1/8 Mile Time"
+                                        value={timeSlip.eigthMileTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.eigthMileTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                            <div className="eigthMileTimeLabel">1/8</div>
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="1/8 Mile Time"
+                                        value={timeSlip.opponentEigthMileTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.opponentEigthMileTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div className="eigthMileSpeed">
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="1/8 Mile MPH"
+                                        value={timeSlip.eigthMileSpeed}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.eigthMileSpeed = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                            <div className="eigthMileSpeedLabel">MPH</div>
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="1/8 Mile MPH"
+                                        value={timeSlip.opponentEigthMileSpeed}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.opponentEigthMileSpeed = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div className="oneThousandFootTime">
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="1000'"
+                                        value={timeSlip.oneThousandFootTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.oneThousandFootTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                            <div className="oneThousandFootTimeLabel">1000'</div>
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="1000'"
+                                        value={timeSlip.opponentOneThousandFootTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.opponentOneThousandFootTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div className="quarterMileTime">
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="1/4 Mile Time"
+                                        value={timeSlip.quarterMileTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.quarterMileTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                            <div className="quarterMileTimeLabel">1/4</div>
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="1/4 Mile Time"
+                                        value={timeSlip.opponentQuarterMileTime}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.opponentQuarterMileTime = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div className="quarterMileSpeed">
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="1/4 Mile MPH"
+                                        value={timeSlip.quarterMileSpeed}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.quarterMileSpeed = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                            <div className="quarterMileSpeedLabel">MPH</div>
+                            <fieldset>
+                                <div className="form-group">
+                                    <input
+                                        required
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="1/4 Mile MPH"
+                                        value={timeSlip.opponentQuarterMileSpeed}
+                                        onChange={
+                                            (evt) => {
+                                                const copy = { ...timeSlip }
+                                                copy.opponentQuarterMileSpeed = evt.target.value
+                                                update(copy)
+                                            }
+                                        } />
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div className="timeSlipDetails">
+                        <h2 className="detailsHeader">Details</h2>
+                        <fieldset>
+                            <div className="detailsFormGroup">
+                                <label htmlFor="changes">Changes Made to Car</label>
+                                <textarea
+                                    required
+                                    className="form-textarea"
+                                    placeholder="Changes Made"
+                                    rows={4}
+                                    cols={4}
+                                    value={timeSlip.changesToCar}
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...timeSlip }
+                                            copy.changesToCar = evt.target.value
+                                            update(copy)
+                                        }
+                                    } />
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div className="detailsFormGroup">
+                                <label htmlFor="date">Date</label>
+                                <input
+                                    required
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Date"
+                                    value={timeSlip.date}
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...timeSlip }
+                                            copy.date = evt.target.value
+                                            update(copy)
+                                        }
+                                    } />
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div className="detailsFormGroup">
+                                <label htmlFor="weather">Weather</label>
+                                <input
+                                    required
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Weather"
+                                    value={timeSlip.weather}
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...timeSlip }
+                                            copy.weather = evt.target.value
+                                            update(copy)
+                                        }
+                                    } />
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div className="detailsCheckbox">
+                                <label htmlFor="win">Win:</label>
+                                <input type="checkbox"
+                                    value={timeSlip.win}
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...timeSlip }
+                                            copy.win = evt.target.checked
+                                            update(copy)
+                                        }
+                                    } />
+                            </div>
+                        </fieldset>
+                        <div className="locationAndVehicleWrapper">
+                            <fieldset>
+                                <div className="detailsFormGroup">
+                                    <label htmlFor="vehicle">
+                                        <select
+                                            value={timeSlip.vehicleId}
+                                            onChange={
+                                                (evt) => {
+                                                    const copy = { ...timeSlip }
+                                                    copy.vehicleId = parseInt(evt.target.value)
+                                                    update(copy)
+                                                }
+                                            }>
+                                            <option>Pick A Vehicle</option>
+                                            {
+                                                filteredVehicles.map(
+                                                    (vehicle) => {
+                                                        return <option key={`${vehicle.id}`} value={vehicle.id}>{vehicle.year} {vehicle.make} {vehicle.model}</option>
+                                                    })
+                                            }
+                                        </select>
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div className="detailsFormGroup">
+                                    <label htmlFor="location">
+                                        <select
+                                            value={timeSlip.locationId}
+                                            onChange={
+                                                (evt) => {
+                                                    const copy = { ...timeSlip }
+                                                    copy.locationId = parseInt(evt.target.value)
+                                                    update(copy)
+                                                }
+                                            }>
+                                            <option>Pick A Track</option>
+                                            {
+                                                filteredLocations.map(
+                                                    (location) => {
+                                                        return <option key={`${location.id}`} value={location.id}>{location.name}</option>
+                                                    })
+                                            }
+                                        </select>
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <button
-                onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-                className="btn btn-primary">
-                Save Changes
-            </button>
-            <button onClick={() => navigate("/timeSlips")}>Cancel</button>
-        </form>
+                <button
+                    onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
+                    className="saveTimeSlipEditButton">
+                    Save Changes
+                </button>
+                <button className="cancelEditButton" onClick={() => navigate("/timeSlips")}>Cancel</button>
+            </form>
+        </div>
     )
 }

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./Vehicles.css"
 
 export const VehicleForm = ({getVehicles}) => {
     const [newVehicle, update] = useState({
@@ -35,66 +36,68 @@ export const VehicleForm = ({getVehicles}) => {
 
     return (
         <form className="vehicleForm">
-            <h4 className="vehicleForm__title">New Vehicle</h4>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="year">Year</label>
-                    <input
-                        required autoFocus
-                        type="number"
-                        className="form-control"
-                        placeholder="Name"
-                        value={newVehicle.year}
-                        onChange={
-                            (evt) => {
-                                const copy = {...newVehicle}
-                                copy.year = parseInt(evt.target.value)
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="make">Make</label>
-                    <input
-                        required
-                        type="text"
-                        className="form-control"
-                        placeholder="Make"
-                        value={newVehicle.make}
-                        onChange={
-                            (evt) => {
-                                const copy = {...newVehicle}
-                                copy.make = evt.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="model">Model</label>
-                    <input
-                        required
-                        type="text"
-                        className="form-control"
-                        placeholder="Model"
-                        value={newVehicle.model}
-                        onChange={
-                            (evt) => {
-                                const copy = {...newVehicle}
-                                copy.model = evt.target.value
-                                update(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
-            <button
-                onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-                className="btn btn-primary">
-                Add to Garage
-            </button>
+            <h4 className="vehicleFormTitle">New Vehicle</h4>
+            <div className="vehicleFormWrapper">
+                <fieldset>
+                    <div className="formGroup">
+                        <label htmlFor="year">Year</label>
+                        <input
+                            required autoFocus
+                            type="number"
+                            className="form-control"
+                            placeholder="Name"
+                            value={newVehicle.year}
+                            onChange={
+                                (evt) => {
+                                    const copy = {...newVehicle}
+                                    copy.year = parseInt(evt.target.value)
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="formGroup">
+                        <label htmlFor="make">Make</label>
+                        <input
+                            required
+                            type="text"
+                            className="form-control"
+                            placeholder="Make"
+                            value={newVehicle.make}
+                            onChange={
+                                (evt) => {
+                                    const copy = {...newVehicle}
+                                    copy.make = evt.target.value
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="formGroup">
+                        <label htmlFor="model">Model</label>
+                        <input
+                            required
+                            type="text"
+                            className="form-control"
+                            placeholder="Model"
+                            value={newVehicle.model}
+                            onChange={
+                                (evt) => {
+                                    const copy = {...newVehicle}
+                                    copy.model = evt.target.value
+                                    update(copy)
+                                }
+                            } />
+                    </div>
+                </fieldset>
+                <button
+                    onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
+                    className="addVehicleButton">
+                    Add to Garage
+                </button>
+            </div>
         </form>
     )
 }
